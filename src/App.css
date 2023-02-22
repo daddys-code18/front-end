@@ -11,9 +11,24 @@
   padding: 10px;
   text-decoration: none;
 }
-.nav-ul {
+.nav-ul li a {
   text-decoration: none;
+  color: #fff;
+  padding: 5px;
 }
+.nav-ul {
+  padding: 5px;
+  margin: 0;
+  background-color: skyblue;
+}
+.footer {
+  text-align: center;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  background-color: skyblue;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
