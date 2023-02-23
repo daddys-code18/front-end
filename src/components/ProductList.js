@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function ProductList() {
   const [products, setProducts] = React.useState([]);
@@ -40,6 +41,7 @@ function ProductList() {
           <li>{item.category ? item.category : "mobile"}</li>
           <li>
             <button onClick={() => deleteProduct(item._id)}>Delete</button>
+            <Link to={"/update/" + item._id}>Update</Link>
           </li>
         </ul>
       ))}
