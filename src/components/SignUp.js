@@ -1,5 +1,5 @@
-import react, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import react, { useState, useEffect } from "react";
+import { json, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -7,22 +7,28 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const auth = localStorage.getItem("user");
+    if (auth) {
+      navigate("/");
+    }
+  });
   const collectData = async () => {
-    console.warn(name, email, password);
-    let result = await fetch("http://localhost:5000/register", {
+    // console.warn(name, email, password);
+    let result = await fetch(" http://localhost:5000/register", {
       method: "post",
       body: JSON.stringify({ name, email, password }),
       headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
     });
     result = await result.json();
     console.warn(result);
-    if (result) {
-      navigate("/");
-    }
+    localStorage.setItem("user", JSON.stringify(result));
+    navigate("/");
   };
-
   return (
     <div className="register text-center shadow-sm container">
       <h1>Register</h1>
